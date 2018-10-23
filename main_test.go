@@ -27,17 +27,17 @@ func TestRetry(t *testing.T) {
 	}
 	for _, tt := range testCases {
 		t.Run(tt.name, func(t *testing.T) {
-			var count int
+			var attempt int
 			err := Retry(tt.timeout, func() error {
-				if count < 3 {
-					count++
-					fmt.Println(count)
+				if attempt < 3 {
+					attempt++
+					fmt.Printf("attempt: %d \n", attempt)
 					return errors.New("timeout exceeded")
 				}
 				return nil
 			})
 			if tt.wantErr {
-				assert.Error(t, err)
+				assert.EqualError(t, err, "timeout exceeded")
 				t.Log(err)
 			} else {
 				assert.NoError(t, err)

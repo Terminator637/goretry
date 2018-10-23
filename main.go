@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// Retry is an exponential backoff retry helper
+// Retry is a retry helper with timeout
 func Retry(timeout time.Duration, op func() error) error {
 	bo := backoff.NewExponentialBackOff()
 	bo.MaxInterval = time.Second * 5
