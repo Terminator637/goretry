@@ -16,7 +16,7 @@ func TestRetry(t *testing.T) {
 	}{
 		{
 			name:    "success",
-			timeout: 10 * time.Second,
+			timeout: 0,
 			wantErr: false,
 		},
 		{
